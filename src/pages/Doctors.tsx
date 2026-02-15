@@ -46,7 +46,7 @@ export default function Doctors() {
   }, [search]);
 
   return (
-    <div className="min-h-screen bg-slate-50 flex flex-col">
+    <div className="min-h-screen  flex flex-col">
       {/* --- HEADER --- */}
       <div className="bg-white border-b sticky top-16 z-30 shadow-sm py-4">
         <div className="container mx-auto px-4">

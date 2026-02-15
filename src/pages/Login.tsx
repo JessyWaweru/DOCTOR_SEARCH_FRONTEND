@@ -5,7 +5,7 @@ import { useAuth } from '../context/AuthContext';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Loader2, Eye, EyeOff, LogIn as LogInIcon } from 'lucide-react';
+import { Loader2, Eye, EyeOff, LogIn as LogInIcon, ArrowLeft } from 'lucide-react';
 
 export default function Login() {
   const navigate = useNavigate();
@@ -48,7 +48,20 @@ export default function Login() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-slate-50 p-4">
+    <div className="min-h-screen flex items-center justify-center  p-4 relative">
+      
+      {/* --- BACK TO HOME BUTTON --- */}
+      <Link 
+        to="/" 
+        className="absolute top-6 left-6 md:top-10 md:left-10 flex items-center gap-2 text-slate-500 hover:text-primary transition-colors font-semibold"
+      >
+         <div className="h-8 w-8 bg-white rounded-full shadow-sm flex items-center justify-center border border-slate-200">
+            <ArrowLeft className="h-4 w-4" />
+         </div>
+         <span className="hidden md:inline">Back to Home</span>
+      </Link>
+      {/* --------------------------- */}
+
       <div className="w-full max-w-md bg-white rounded-xl shadow-lg border border-slate-100 overflow-hidden">
         
         <div className="p-8 pb-6 text-center border-b border-slate-50 bg-slate-50/50">
@@ -84,16 +97,12 @@ export default function Login() {
             <div className="space-y-2">
               <div className="flex justify-between items-center">
                 <Label htmlFor="password">Password</Label>
-                
-                {/* --- FORGOT PASSWORD LINK ADDED HERE --- */}
                 <Link 
                   to="/forgot-password" 
                   className="text-xs font-medium text-primary hover:text-primary/80 hover:underline"
                 >
                   Forgot password?
                 </Link>
-                {/* --------------------------------------- */}
-
               </div>
               
               <div className="relative">

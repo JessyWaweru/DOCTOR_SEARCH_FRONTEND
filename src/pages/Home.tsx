@@ -55,11 +55,11 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-slate-50 flex flex-col font-sans">
+    <div className="min-h-screen  flex flex-col font-sans">
       
 
       {/* --- HERO SECTION (TOP) --- */}
-      <div className="relative overflow-hidden bg-white border-b border-slate-100">
+      <div className="relative overflow-hidden border-b border-slate-100">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[500px] bg-gradient-to-b from-primary/5 to-transparent rounded-full blur-3xl -z-10" />
 
         <div className="container mx-auto px-4 py-20 md:py-28 text-center relative z-10">
@@ -87,7 +87,7 @@ export default function Home() {
       </div>
 
       {/* --- FEATURES SECTION (MIDDLE) --- */}
-      <div className="bg-white py-20 border-b border-slate-200">
+      <div className=" py-20 border-b border-slate-200">
         <div className="container mx-auto px-4">
             <div className="text-center mb-12">
                 <h2 className="text-3xl font-bold text-slate-900">Why DocRank?</h2>
@@ -138,7 +138,7 @@ export default function Home() {
       </div>
 
       {/* --- HOTTEST SPECIALISTS SECTION (BOTTOM) --- */}
-      <main className="bg-slate-50 py-24">
+      <main className="py-24">
         <div className="container mx-auto px-4">
           {/* Header */}
           <div className="text-center max-w-3xl mx-auto mb-16">
@@ -173,7 +173,7 @@ export default function Home() {
       </main>
 
       {/* --- FOOTER --- */}
-      <footer className="bg-slate-900 text-slate-300 py-12 text-center">
+      <footer className=" text-slate-300 py-12 text-center">
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-center gap-2 mb-4 font-bold text-2xl text-white">
               <Activity className="h-6 w-6" /> DocRank

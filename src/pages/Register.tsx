@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import api from '../api/axios';
 import { useAuth } from '../context/AuthContext';
@@ -59,13 +59,11 @@ export default function Register() {
     e.preventDefault();
     setError('');
 
-    // 1. Check Passwords Match
     if (formData.password !== formData.confirmPassword) {
       setError("Passwords do not match.");
       return;
     }
 
-    // 2. Check Password Strength
     if (!passStrength.length || !passStrength.number || !passStrength.special || !passStrength.upper) {
       setError("Please ensure your password meets all requirements.");
       return;
@@ -74,7 +72,6 @@ export default function Register() {
     setLoading(true);
 
     try {
-      // Send only necessary data to backend (exclude confirmPassword)
       await api.post('/auth/register/', {
         username: formData.username,
         email: formData.email,
@@ -98,21 +95,19 @@ export default function Register() {
     setLoading(true);
 
     try {
-      // 1. Verify OTP
       const res = await api.post('/auth/verify-email/', {
         username: formData.username,
         otp
       });
 
-      // 2. Auto Login if tokens exist
       if (res.data.access && res.data.refresh) {
           login(res.data.access, res.data.refresh, {
               username: res.data.username,
               user_id: res.data.user_id
           });
-          navigate('/'); // Redirect to Home
+          navigate('/'); 
       } else {
-          navigate('/login'); // Fallback
+          navigate('/login');
       }
 
     } catch (err) {
@@ -123,7 +118,20 @@ export default function Register() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-slate-50 p-4">
+    <div className="min-h-screen flex items-center justify-center bg-slate-50 p-4 relative">
+      
+      {/* --- BACK TO HOME BUTTON --- */}
+      <Link 
+        to="/" 
+        className="absolute top-6 left-6 md:top-10 md:left-10 flex items-center gap-2 text-slate-500 hover:text-primary transition-colors font-semibold"
+      >
+         <div className="h-8 w-8 bg-white rounded-full shadow-sm flex items-center justify-center border border-slate-200">
+            <ArrowLeft className="h-4 w-4" />
+         </div>
+         <span className="hidden md:inline">Back to Home</span>
+      </Link>
+      {/* --------------------------- */}
+
       <div className="w-full max-w-md bg-white rounded-xl shadow-lg border border-slate-100 overflow-hidden">
         
         {/* Header */}
