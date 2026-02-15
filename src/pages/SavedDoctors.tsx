@@ -23,7 +23,7 @@ interface Doctor {
 }
 
 export default function SavedDoctors() {
-  const { isSaved } = useSaved(); // We can use this to check status if needed
+   // We can use this to check status if needed
   
   // Initialize with empty arrays to prevent "undefined" errors
   const [doctors, setDoctors] = useState<Doctor[]>([]);

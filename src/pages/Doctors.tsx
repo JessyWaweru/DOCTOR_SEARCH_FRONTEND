@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import api from '../api/axios';
 import { Search, Loader2 } from 'lucide-react'; // Removed Heart import
 import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
+
 
 // Import Shared Components
 import DoctorCard from '@/components/DoctorCard';

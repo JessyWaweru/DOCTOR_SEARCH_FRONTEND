@@ -3,7 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { useSaved } from '../context/SavedContext';
 import { 
-  Activity, Home, Search, Heart, LogIn, UserPlus, LogOut, MessageSquare 
+  Activity, Home, Search, Heart, LogIn, UserPlus, LogOut
 } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";

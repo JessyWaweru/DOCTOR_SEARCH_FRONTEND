@@ -1,4 +1,4 @@
-import React, { createContext, useState, useEffect, useContext, ReactNode } from 'react';
+import  { createContext, useState, useEffect, useContext, type ReactNode } from 'react';
 import api from '../api/axios';
 import { useAuth } from './AuthContext';
 
@@ -14,7 +14,7 @@ const SavedContext = createContext<SavedContextType | null>(null);
 export const SavedProvider = ({ children }: { children: ReactNode }) => {
   const { isAuthenticated } = useAuth();
   const [savedIds, setSavedIds] = useState<number[]>([]);
-  const [loading, setLoading] = useState(false);
+  const [loading/*, setLoading*/] = useState(false);
   const [processingIds, setProcessingIds] = useState<number[]>([]); 
 
   useEffect(() => {

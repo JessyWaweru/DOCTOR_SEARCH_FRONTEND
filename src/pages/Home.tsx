@@ -3,18 +3,10 @@ import { Link } from 'react-router-dom';
 import api from '../api/axios';
 import { useAuth } from '../context/AuthContext';
 import { 
-  ShieldCheck, Activity, Users, Award, ArrowRight, LogOut, User as UserIcon 
+  ShieldCheck, Activity, Users, Award, ArrowRight
 } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { Card, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
 
 // Import Components
 import DoctorCard from '@/components/DoctorCard';
@@ -34,7 +26,7 @@ interface Doctor {
 }
 
 export default function Home() {
-  const { user, logout, isAuthenticated } = useAuth();
+  const { user,  isAuthenticated } = useAuth();
   
   const [topDoctors, setTopDoctors] = useState<Doctor[]>([]);
   const [selectedDoctor, setSelectedDoctor] = useState<Doctor | null>(null);
