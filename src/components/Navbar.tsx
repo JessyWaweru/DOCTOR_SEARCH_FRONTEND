@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { useSaved } from '../context/SavedContext';
 import { 
@@ -27,6 +27,7 @@ export default function Navbar() {
   const { logout, isAuthenticated } = useAuth();
   const { savedIds } = useSaved();
   const location = useLocation();
+  const navigate = useNavigate();
   const [isLogoutOpen, setIsLogoutOpen] = useState(false);
 
   const isActive = (path: string) => location.pathname === path;
@@ -153,6 +154,7 @@ export default function Navbar() {
               onClick={() => {
                 logout();
                 setIsLogoutOpen(false);
+                navigate('/login');
               }}
             >
               Log Out

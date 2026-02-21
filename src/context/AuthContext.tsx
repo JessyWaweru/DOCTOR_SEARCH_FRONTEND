@@ -61,10 +61,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     setIsAuthenticated(false);
     
     delete api.defaults.headers.common['Authorization'];
-    
-    // Optional: Redirect to login manually if needed, 
-    // but usually the UI handles this via protected routes.
-    window.location.href = '/login'; 
   };
 
   return (
