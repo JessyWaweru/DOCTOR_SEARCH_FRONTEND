@@ -35,14 +35,14 @@ export default function DoctorCard({ doctor, onClick }: DoctorCardProps) {
       </div>
 
       <CardHeader className="pb-2 flex flex-row gap-4 items-center pr-24">
-        <Avatar className="h-16 w-16 border-2 border-primary/20">
+        <Avatar className="h-16 w-16 border-2 border-primary/20 shrink-0">
             <AvatarImage src={doctor.image} alt={doctor.name} className="object-cover" />
             <AvatarFallback className="bg-primary/10 text-primary font-bold text-lg">
                 {doctor.name.substring(0, 2).toUpperCase()}
             </AvatarFallback>
         </Avatar>
-        <div>
-            <Badge variant="secondary" className="mb-1 text-primary bg-primary/5 border-primary/10">
+        <div className="flex-1 min-w-0">
+            <Badge variant="secondary" className="mb-1 text-primary bg-primary/5 border-primary/10 whitespace-normal h-auto text-left leading-tight">
                 {doctor.specialty}
             </Badge>
             <CardTitle className="text-xl font-bold text-slate-900 group-hover:text-primary transition-colors">
