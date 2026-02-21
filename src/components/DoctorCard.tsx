@@ -34,7 +34,7 @@ export default function DoctorCard({ doctor, onClick }: DoctorCardProps) {
          </div>
       </div>
 
-      <CardHeader className="pb-2 flex flex-row gap-4 items-center">
+      <CardHeader className="pb-2 flex flex-row gap-4 items-center pr-24">
         <Avatar className="h-16 w-16 border-2 border-primary/20">
             <AvatarImage src={doctor.image} alt={doctor.name} className="object-cover" />
             <AvatarFallback className="bg-primary/10 text-primary font-bold text-lg">

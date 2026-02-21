@@ -66,6 +66,7 @@ export default function DoctorDetails({ doctor, isOpen, onClose }: DoctorDetails
   const [rating, setRating] = useState(10);
   const [comment, setComment] = useState('');
   const [loading, setLoading] = useState(false);
+  const [isImageZoomed, setIsImageZoomed] = useState(false);
 
   // Fetch Reviews
   const fetchReviews = async () => {
@@ -158,31 +159,41 @@ export default function DoctorDetails({ doctor, isOpen, onClose }: DoctorDetails
            
            {/* --- HEADER --- */}
            <div className="bg-slate-900 text-white p-6 shrink-0 relative z-10">
+              {/* Zoom Backdrop */}
+              {isImageZoomed && (
+                <div 
+                  className="fixed inset-0 z-[60] bg-black/40 backdrop-blur-sm"
+                  onClick={() => setIsImageZoomed(false)}
+                />
+              )}
+
               <div className="flex flex-col md:flex-row justify-between items-start gap-4">
                  <div className="flex gap-4 items-center">
-                    <Avatar className="h-20 w-20 border-2 border-white/20 shadow-xl">
-                       <AvatarImage src={doctor.image} className="object-cover"/>
-                       <AvatarFallback className="text-slate-900 font-bold text-2xl bg-slate-200">
-                          {doctor.name.substring(0,2)}
-                       </AvatarFallback>
-                    </Avatar>
+                    <div className="h-20 w-20 shrink-0">
+                        <Avatar 
+                           className={`transition-all duration-500 ease-in-out cursor-pointer ${
+                              isImageZoomed 
+                              ? 'fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-72 h-72 border-4 border-white shadow-2xl z-[70]' 
+                              : 'h-20 w-20 border-2 border-white/20 shadow-xl'
+                           }`}
+                           onClick={(e) => { e.stopPropagation(); setIsImageZoomed(!isImageZoomed); }}
+                        >
+                           <AvatarImage src={doctor.image} className="object-cover"/>
+                           <AvatarFallback className="text-slate-900 font-bold text-2xl bg-slate-200">
+                              {doctor.name.substring(0,2)}
+                           </AvatarFallback>
+                        </Avatar>
+                    </div>
                     <div>
                        <div className="flex items-center gap-2 mb-1">
                           <Badge className="bg-primary/90 text-white border-none px-2 py-0.5 text-xs font-semibold">Verified</Badge>
-                          <TooltipProvider>
-                            <Tooltip delayDuration={0}>
-                              <TooltipTrigger asChild>
-                                <button 
-                                   onClick={(e) => { e.stopPropagation(); toggleSave(doctor.id); }}
-                                   className="flex items-center gap-1 text-xs font-medium px-2 py-0.5 rounded-full bg-white/10 hover:bg-white/20 transition-colors"
-                                >
-                                   <Heart className={`h-3.5 w-3.5 ${isDoctorSaved ? 'fill-red-500 text-red-500' : 'text-white'}`} />
-                                   {isDoctorSaved ? 'Saved' : 'Save'}
-                                </button>
-                              </TooltipTrigger>
-                              <TooltipContent><p>{isDoctorSaved ? "Unsave" : "Save"}</p></TooltipContent>
-                            </Tooltip>
-                          </TooltipProvider>
+                          <button 
+                             onClick={(e) => { e.stopPropagation(); toggleSave(doctor.id); }}
+                             className="flex items-center gap-1 text-xs font-medium px-2 py-0.5 rounded-full bg-white/10 hover:bg-white/20 transition-colors"
+                          >
+                             <Heart className={`h-3.5 w-3.5 ${isDoctorSaved ? 'fill-red-500 text-red-500' : 'text-white'}`} />
+                             {isDoctorSaved ? 'Saved' : 'Save'}
+                          </button>
                        </div>
                        <DialogTitle className="text-2xl font-bold leading-tight">{doctor.name}</DialogTitle>
                        <p className="text-slate-400 flex items-center gap-2 text-sm mt-1">
